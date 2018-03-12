@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block container %}
+<form {% if object %} action="{% url 'account:user_address_update' object.pk %}"
+      {% else %} action="{% url 'account:user_address_create' %}"
+      {% endif %} method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    {% if object %}
+    <input type="submit" value="修改" />
+    {% else %}
+    <input type="submit" value="保存" />
+    {% endif %}
+</form>
+{% endblock %}

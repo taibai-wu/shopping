@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block style %}
+<style type="text/css">
+.class1 {
+        font-size:18px;
+        color:blue;
+            }
+
+            .class2 {
+        font-size:20px;
+        color:gray;
+            }
+</style>
+{% endblock %}
+
+{% block container %}
+<a type="button" class=" btn btn-primary btn-lg active" href="{% url 'account:user_address_create' %}">添加收货地址</a>
+<table class="table table-striped">
+    <thead>
+    <tr class="class1">
+        <th>联系人</th>
+        <th>移动电话</th>
+        <th>固定电话</th>
+        <th>邮箱</th>
+        <th>收获地址</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {% for object in object_list %}
+        <td class="class2">{{ object.name }}</td>
+        <td class="class2">{{ object.telephone }}</td>
+        <td class="class2">{{ object.fixedphone }}</td>
+        <td class="class2">{{ object.email }}</td>
+        <td class="class2">{{ object.addr }}</td>
+        <td class="class2">
+            <a type="button" class=" btn btn-danger active" href="{% url 'account:user_address_delete' object.pk %}">删除</a>
+            <a type="button" class=" btn btn-primary active" href="{% url 'account:user_address_update' object.pk %}">修改</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+
+
